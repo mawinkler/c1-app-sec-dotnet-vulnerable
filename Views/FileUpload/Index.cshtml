@@ -1,0 +1,25 @@
+<style>
+  #css_code {
+    width: 100%;
+  }
+</style>
+
+<div class="row">
+  <div class="col-xs-12">
+    <h4>File Upload</h4>
+  </div>
+</div>
+
+<p><i>Filres with the following extensions should not be permitted to be uploaded<br>
+[".exe", ".rb", ".py", ".php", ".asp", ".aspx", ".jsp", ".com", ".bat", ".sh", ".jar"]
+</i></p>
+
+<div class="row">
+  <div class="col-xs-12">
+    <form method="POST" enctype="multipart/form-data" action="/FileUpload/Upload">
+      <div class="alert">@ViewBag.UploadMessage</div>
+      <input type="file" name="file" class="btn btn-default col-xs-12">
+      <input type="submit" value="Upload" class="btn btn-default col-xs-12">
+    </form>
+  </div>
+</div>

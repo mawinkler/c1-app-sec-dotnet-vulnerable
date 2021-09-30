@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h4>Split Response</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <textarea type="text" class="form-control" placeholder="The server will respond with the header 'Custom_header' with the value provided here" data-bind="value: custom_header"></textarea>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 25px">
+  <div class="col-xs-12">
+    <button class="btn btn-default col-xs-12" data-bind="click: submit">Submit</button>
+  </div>  
+</div>
+
+<p><i>Try a value with a new line to trigger a split response threat</i></p>
+
+<script>
+  function SplitResponseController(){
+    var self = this;
+    self.custom_header = ko.observable("");
+
+      self.submit = function(){
+          $.ajax({
+              type: "POST",
+              url: "/SplitResponse",
+              data: {
+                custom_header: self.custom_header(),
+              },
+              success: function(data, textStatus, jqXHR){
+                alert("Good!");
+              },
+              error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                alert(errorThrown);
+              },
+              dataType: "json"
+          });
+      }     
+     
+  }
+
+  var viewmodel = new SplitResponseController();
+
+  $(function(){ 
+    ko.applyBindings(viewmodel,$("html")[0]);           
+  });
+</script>

@@ -1,0 +1,45 @@
+<style>
+  #css_code {
+    width: 100%;
+  }
+</style>
+
+<div class="row">
+  <div class="col-xs-12">
+    <h4>File Download</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <input type="text" class="form-control" placeholder="Filename:" data-bind="value: filename">  
+  </div>  
+  <div class="col-xs-12">
+    <textarea id="contents">@ViewBag.FileContent</textarea>
+  </div>  
+  <div class="col-xs-12" style="margin-top: 25px">
+    <button class="btn btn-default col-xs-12" type="button" data-bind="click: submit">Download</button>
+  </div>  
+</div>
+
+<p><i>Prime 100 times with a known good file, eg: README.md<br>
+Then try to read a file such as: /etc/passwd</i></p>
+
+<script>
+
+  function FileDownloadController(){
+    var self = this;  
+    self.filename = ko.observable("");
+
+      self.submit = function(){
+        window.location = "/FileAccess?filename=" + self.filename();
+      }
+     
+  }
+
+  var viewmodel = new FileDownloadController();
+
+  $(function(){ 
+    ko.applyBindings(viewmodel,$("html")[0]);           
+  });
+</script>

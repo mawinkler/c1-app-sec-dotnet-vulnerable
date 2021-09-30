@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h4>Status Code</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <input type="text" class="form-control" placeholder="What status code do you want?" data-bind="value: status">
+  </div>
+</div>
+
+<div class="row" style="margin-top: 25px">
+  <div class="col-xs-12">
+    <button class="btn btn-default col-xs-12" data-bind="click: submit">Submit</button>
+  </div>  
+</div>
+
+<script>
+  function StatusCodeController(){
+    var self = this;
+    self.status = ko.observable("");
+
+      self.submit = function(){
+          window.location = "/StatusCode?status=" + self.status();
+      }     
+     
+  }
+
+  var viewmodel = new StatusCodeController();
+
+  $(function(){ 
+    ko.applyBindings(viewmodel,$("html")[0]);           
+  });
+</script>

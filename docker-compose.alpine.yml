@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        OS: alpine
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./log:/var/log/trend_app_protect
+    environment:
+      CONNECTION_STRING: Server=mysql;Database=test_app_dotnetcore;User=root;Password=;
+    links:
+      - mysql
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: test_app_dotnetcore

@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h4>Open Redirect</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <input type="text" class="form-control" placeholder="Where do you want to 'sploit today?!" data-bind="value: destination_url">
+  </div>
+</div>
+
+<div class="row" style="margin-top: 25px">
+  <div class="col-xs-12">
+    <button class="btn btn-default col-xs-12" data-bind="click: submit">Submit</button>
+  </div>  
+</div>
+
+<p><i>Prime first with a valid URL such as "http://www.google.com"<br>
+Then try another URL eg: "http://www.ibm.com"
+</i></p>
+
+<script>
+  function RedirectController(){
+    var self = this;
+    self.destination_url = ko.observable("");
+
+      self.submit = function(){
+          window.location = "/Redirect?destination_url=" + self.destination_url();
+      }     
+     
+  }
+
+  var viewmodel = new RedirectController();
+
+  $(function(){ 
+    ko.applyBindings(viewmodel,$("html")[0]);           
+  });
+</script>

@@ -1,0 +1,47 @@
+<div class="content">
+  <style>
+    #css_code {
+      width: 100%;
+    }
+  </style>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h4>OS Command Injection</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12"> 
+      <nobr>ls -l | grep '<input type="text" class="form-control" style="width:50%; display:inline" placeholder="Process Filter" data-bind="value: filter">';</nobr>
+    </div>
+    <div class="col-xs-12">
+      <pre>@ViewBag.ExecOutput</pre>
+    </div>  
+    <div class="col-xs-12" style="margin-top: 25px">
+      <button class="btn btn-default col-xs-12" type="button" data-bind="click: submit">Run</button>
+    </div>  
+    HINT: %27%60%74%6f%75%63%68%20%70%77%6e%65%64%60%27
+  </div>
+
+  <p><i>Prime first with a valid file such as "."<br>
+  Then try the URL encoded string ['`touch pwned`'] which is the hint
+  </i></p>
+
+  <script>
+    function ProcessController(){
+      var self = this;  
+      self.filter = ko.observable("");
+
+      self.submit = function(){
+        window.location = "?filter=" + self.filter();
+      }
+    }
+
+    var viewmodel = new ProcessController();
+
+    $(function(){ 
+      ko.applyBindings(viewmodel,$("html")[0]);           
+    });
+  </script>
+</div>

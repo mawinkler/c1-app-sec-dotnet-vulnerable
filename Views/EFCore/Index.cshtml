@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h4>@ViewBag.Method</h4>
+
+    <div class="alert alert-info">
+      @if (ViewBag.Method == "FromSqlRaw")
+      {
+        <p>Use a plain SQL query on User. Eg.: <code>SELECT * FROM User</code></p>
+      }
+      else if (ViewBag.Method == "Where")
+      {
+        <p>Query will be passed as a parameter to Where(...). Eg.: <code>.Where(user => user.Name == [PARAM])</code></p>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <form method="GET" action="/EFCore/Perform">
+      <div class="input-group">
+        <input type="hidden" class="form-control" name="method" value="@ViewBag.Method">
+        <input type="text" class="form-control" name="sql" placeholder="Query">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">Execute</button>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 25px">
+  <div class="col-xs-12">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var user in ViewBag.Users)
+        {
+          <tr>
+            <td>@user.Id</td>
+            <td>@user.Name</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
