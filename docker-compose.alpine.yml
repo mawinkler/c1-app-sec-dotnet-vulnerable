@@ -10,8 +10,10 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./log:/var/log/trend_app_protect
+      - ./logs:/var/log/appsec
     environment:
+      TREND_AP_KEY: ${APPSEC_KEY}
+      TREND_AP_SECRET: ${APPSEC_SECRET}
       CONNECTION_STRING: Server=mysql;Database=test_app_dotnetcore;User=root;Password=;
     links:
       - mysql
