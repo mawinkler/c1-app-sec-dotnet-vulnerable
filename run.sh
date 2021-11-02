@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo rm logs/appsec.log logs/defence.log
+sudo rm logs/appsec.log
 
 # Ubuntu image
 docker-compose up --build

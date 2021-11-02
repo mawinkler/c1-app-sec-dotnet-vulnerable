@@ -14,6 +14,16 @@ First, clone the repo
 $ git clone https://github.com/mawinkler/c1-app-sec-moneyx.git
 ```
 
+Now, set your Application Security keys
+
+```sh
+$ # YOUR KEYS HERE
+$ export APPSEC_KEY=<your key>
+$ export APPSEC_SECRET=<your secret>
+$ # YOUR DOCKER HUB USERNAME (required for deploy.sh only)
+$ export DOCKER_USERNAME=<your username>
+```
+
 Then build and run the container, which you can do by running
 
 ```sh
@@ -29,9 +39,11 @@ The app is accessible on port 5000.
 
 ## Attacks
 
-```
+```sql
 SELECT * FROM User WHERE (name LIKE "%") OR 1=1
 ```
+
+Or do the illegal file access, shellshock, ...
 
 ## Support
 

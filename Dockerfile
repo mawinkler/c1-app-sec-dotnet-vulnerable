@@ -15,6 +15,7 @@ WORKDIR /app
 
 COPY --from=build /app/out ./
 
+# Application Security
 COPY TrendAppProtect/ TrendAppProtect/
 ENV CORECLR_ENABLE_PROFILING=1
 ENV CORECLR_PROFILER={a51743a9-9e05-4a9f-adcd-d39aa322615a}
@@ -22,6 +23,7 @@ ENV CORECLR_PROFILER_PATH=/app/TrendAppProtect/bin/libTrendAppProtectProfiler-x6
 ENV TREND_AP_CONFIG_FILE=/app/TrendAppProtect/TrendAppProtect.config
 
 ENV ASPNETCORE_ENVIRONMENT="Development"
+# /Application Security
 
 EXPOSE 5000
 
